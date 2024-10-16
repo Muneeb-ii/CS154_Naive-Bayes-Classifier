@@ -224,7 +224,7 @@ A prediction is counted as correct, if its original label and its predicted labe
 
 **7. `predict_label` ** - **30 points**
 
-**8. Final code - **40 points**
+**8. Final code - **10 points**
 
 
 ## Tips On How To Excel
