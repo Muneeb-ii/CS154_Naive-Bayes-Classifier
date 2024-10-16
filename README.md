@@ -61,7 +61,7 @@ Write a function called `get_data`. This function takes in two parameters - a li
 ### `create_word_count_table`
 
 
-Create a function that takes in a list of reviews of a specfic sentiment (positive or negative) and returns a dictionary where the key is a word and the value is the number times it occurs in all the reviews of a specfic sentiment (either positive or negative). You should call your `preprocess_text` function from the previous project to first preprocess each review from the list and then update the dictionary. 
+Create a function that takes in a list of reviews of a specfic sentiment (positive or negative) and the vocabulary of the dataset and returns a dictionary where the key is a word and the value is the number times it occurs in all the reviews of a specfic sentiment (either positive or negative). You should call your `preprocess_text` function from the previous project to first preprocess each review from the list and then update the dictionary. 
 
 ```
 ... # continued from before
@@ -70,7 +70,7 @@ Create a function that takes in a list of reviews of a specfic sentiment (positi
     "This was such an amazing MOVIE!!",
     "I am such a big fan of this movie, it is amazing"
 ]
->>> positive_sentiment_word_count = create_word_count_table(list_of_positive_reviews)
+>>> positive_sentiment_word_count = create_word_count_table(list_of_positive_reviews, vocabulary)
 >>> print(positive_sentiment_word_count)
 {
     'movie': 2,
@@ -179,9 +179,10 @@ If the $P(review | positive)$ is greater than $P(review | negative)$ then return
 After writing all the functions, you should call them in the following sequence at the end of your python file.
 
 1. Load all the reviews from the `test_reviews.csv` or the `IMDB Dataset.csv`.
-2. Create a list of all positive reviews by calling `get_data` function on the list of all reviews.
-3. Create a list of all negative reviews by calling `get_data` function on the list of all reviews. 
-4. Call `create_word_count_table` for both positive and negative review list.
+2. Create vocabulary of the entire dataset by identifying all the unique words. You can use your functions from previous project. 
+3. Create a list of all positive reviews by calling `get_data` function on the list of all reviews.
+4. Create a list of all negative reviews by calling `get_data` function on the list of all reviews. 
+4. Call `create_word_count_table` for both positive and negative review list for each word in the vocabulary.
 5. Use the dictionaries from the previous steps to call `calculate_likelihood_for_each_word` for both positive and negative reviews.
 6. Calculate the `prior_probability` for `positive` and `negative` reviews. 
 7. Select a review randomly from the `IMDB Dataset.csv` and save it in a variable. Call `predict_label` on this variable
@@ -223,7 +224,7 @@ A prediction is counted as correct, if its original label and its predicted labe
 
 **7. `predict_label` ** - **30 points**
 
-**8. Final code - **40 points**
+**8. Final code - **10 points**
 
 
 ## Tips On How To Excel
