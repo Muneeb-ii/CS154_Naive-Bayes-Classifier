@@ -8,7 +8,7 @@ def get_data(reviews: list[str], sentiment) -> list[str]:
     reviews_sentiments: list[str] = [each_review[-8:] for each_review in reviews]
     while i < len(reviews):
         if reviews_sentiments[i] == sentiment:
-            reviews_without_sentiments.append(reviews[i][: len(reviews[i]) - 10])
+            reviews_without_sentiments.append(reviews[i][1 : len(reviews[i]) - 10])
             i += 1
         else:
             i += 1
