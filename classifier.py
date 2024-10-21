@@ -1,4 +1,5 @@
 from language_model import preprocess_text, create_vocabulary
+from helper import get_file_contents
 
 
 def get_data(reviews: list[str], sentiment) -> list[str]:
