@@ -43,3 +43,11 @@ def calculate_likelihood_for_each_word(
         )
         likelihood.update({each_word: round(probability, 3)})
     return likelihood
+
+
+def calculate_prior_probability(reviews: list[str], sentiment: str) -> float:
+    reviews_sentiments: list[str] = [each_review[-8:] for each_review in reviews]
+    prior_probability: float = round(
+        reviews_sentiments.count(sentiment) / len(reviews_sentiments), 5
+    )
+    return prior_probability
