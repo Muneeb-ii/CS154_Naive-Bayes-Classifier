@@ -23,15 +23,23 @@ def create_word_count_table(
     sentiment_word_counter: dict[str, int] = {}
     for each_word in vocabulary:
         for each_preprocessed_review in preprocessed_list_of_reviews:
-            if each_word in sentiment_word_counter:
-                sentiment_word_counter.update(
-                    {
-                        each_word: sentiment_word_counter.get(each_word)
-                        + each_preprocessed_review.count(each_word)
-                    }
-                )
-            else:
-                sentiment_word_counter.update(
-                    {each_word: each_preprocessed_review.count(each_word)}
-                )
+            sentiment_word_counter.update(
+                {
+                    each_word: sentiment_word_counter.get(each_word, 0)
+                    + each_preprocessed_review.count(each_word)
+                }
+            )
     return sentiment_word_counter
+
+
+def calculate_likelihood_for_each_word(
+    sentiment_word_count, len_sentiment_words
+) -> dict[str:float]:
+    unique_words: int = len(sentiment_word_count.keys())
+    likelihood: dict[str:float] = {}
+    for each_word in sentiment_word_count:
+        probability: int = (sentiment_word_count.get(each_word) + 1) / (
+            len_sentiment_words + unique_words
+        )
+        likelihood.update({each_word: round(probability, 3)})
+    return likelihood
