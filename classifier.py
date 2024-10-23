@@ -52,3 +52,26 @@ def calculate_prior_probability(reviews: list[str], sentiment: str) -> float:
         reviews_sentiments.count(sentiment) / len(reviews_sentiments), 5
     )
     return prior_probability
+
+
+def predict_label(
+    review: str,
+    prior_probability_positive: float,
+    prior_probability_negative: float,
+    likelihood_positive_words: dict[str, float],
+    likelihood_negative_words: dict[str, float],
+) -> str:
+    preprocessed_review: str = preprocess_text(review)
+    prob_for_positive: float = prior_probability_positive
+    prob_for_negative: float = prior_probability_negative
+    for each_word in preprocessed_review:
+        prob_for_positive = prob_for_positive * likelihood_positive_words.get(
+            each_word, 1
+        )
+        prob_for_negative = prob_for_negative * likelihood_negative_words.get(
+            each_word, 1
+        )
+    if prob_for_positive > prob_for_negative:
+        return "Positive"
+    else:
+        return "Negative"
