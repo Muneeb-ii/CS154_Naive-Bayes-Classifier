@@ -68,10 +68,10 @@ def calculate_likelihood_for_each_word(
     unique_words: int = len(sentiment_word_count.keys())
     likelihood: dict[str, float] = {}
     for each_word in sentiment_word_count:
-        probability: int = (sentiment_word_count.get(each_word) + 1) / (
+        probability: float = (sentiment_word_count.get(each_word) + 1) / (
             len_sentiment_words + unique_words
         )
-        likelihood.update({each_word: round(probability, 3)})
+        likelihood.update({each_word: round(probability, 6)})
     return likelihood
 
 
