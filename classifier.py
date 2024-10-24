@@ -1,5 +1,6 @@
 from language_model import preprocess_text, create_vocabulary
 from helper import get_file_contents
+import math
 
 
 def get_data(reviews: list[str], sentiment: str) -> list[str]:
@@ -117,10 +118,10 @@ def predict_label(
     prob_for_negative: float = prior_probability_negative
     for each_word in preprocessed_review:
         prob_for_positive = prob_for_positive * likelihood_positive_words.get(
-            each_word, 1
+            each_word, (math.e)**(-6)
         )
         prob_for_negative = prob_for_negative * likelihood_negative_words.get(
-            each_word, 1
+            each_word, (math.e)**(-6)
         )
     if prob_for_positive > prob_for_negative:
         return "positive"
@@ -157,7 +158,7 @@ prob_negative_words = calculate_likelihood_for_each_word(
 positive_review_prior_probability = calculate_prior_probability(reviews, "positive")
 negative_review_prior_probability = calculate_prior_probability(reviews, "negative")
 
-# Testing the predict_label function
+# Testing the predict_label function on random IMDB reviews
 test_review_1_IMBD: str = "Probably my all-time favorite movie, a story of selflessness, sacrifice and dedication to a noble cause, but it's not preachy or boring. It just never gets old, despite my having seen it some 15 or more times in the last 25 years. Paul Lukas' performance brings tears to my eyes, and Bette Davis, in one of her very few truly sympathetic roles, is a delight. The kids are, as grandma says, more like ""dressed-up midgets"" than children, but that only makes them more fun to watch. And the mother's slow awakening to what's happening in the world and under her own roof is believable and startling. If I had a dozen thumbs, they'd all be ""up"" for this movie."  # positive
 test_review_2_IMBD: str = "The cast played Shakespeare.<br /><br />Shakespeare lost.<br /><br />I appreciate that this is trying to bring Shakespeare to the masses, but why ruin something so good.<br /><br />Is it because 'The Scottish Play' is my favorite Shakespeare? I do not know. What I do know is that a certain Rev Bowdler (hence bowdlerization) tried to do something similar in the Victorian era.<br /><br />In other words, you cannot improve perfection.<br /><br />I have no more to write but as I have to write at least ten lines of text (and English composition was never my forte I will just have to keep going and say that this movie, as the saying goes, just does not cut it."  # negative
 print(
