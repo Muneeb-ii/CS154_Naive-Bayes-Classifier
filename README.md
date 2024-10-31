@@ -6,12 +6,25 @@
 Muneeb Azfar Nafees
 
 ### Introspection
+The bonus task was the most engaging part of this project. While working on it, I encountered a couple of issues. 
 
-_Describe the challenges you faced and what you learned_
+1. 
+    Initially, I assigned a probability of 1 to words not found in the positive or negative word count tables. My rationale was that using one would not change the overall probability. However, I soon realized that assigning a probability of 1 implies absolute certainty that a word indicates a sentiment, which is incorrect for unseen words. This approach could mislead the classifier into making inaccurate predictions.
+
+    I researched better ways to handle unseen words in probabilistic models to address this. I learned that assigning a very small probability to unseen words more accurately reflects their unlikelihood. I chose to use  `e^(-6)` (approximately 0.00247875) as the default probability for unseen words. This adjustment significantly improved the classifier’s performance by preventing it from overestimating the importance of unseen words.
+
+2. 
+    I discovered that multiplying many small probabilities can lead to numerical underflow, causing the computed probabilities to become zero due to the limitations of floating-point representation in computers. 
+    
+    To solve this, I implemented logarithms in the predict_label function. I maintained numerical stability and prevented underflow by converting the multiplication of probabilities into adding logarithms. This improved the classifier’s accuracy and gave me valuable insight into handling numerical issues in machine learning algorithms.
+
+This experience taught me the importance of numerical stability in probabilistic computations and how thoughtful mathematical adjustments can significantly improve algorithm performance.
 
 ### Resources
 
-_List the people and resources you used to complete the project_
+Most of the resources I used for this project were reused from Project 4a, such as the `preprocess_text` and `create_vocabulary` functions. These functions were essential for handling and preparing the text data for analysis.
+
+For the bonus task, I consulted online resources to understand the issues of numerical underflow and methods to prevent it. Documentation on Naive Bayes classifiers and discussions on platforms like Stack Overflow helped me learn about using logarithms in probability calculations.
 
 
 ### *DO NOT EDIT BELOW THIS LINE*
