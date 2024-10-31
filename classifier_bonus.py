@@ -167,8 +167,8 @@ while i < len(testing_set_original_sentiments):
         correct_prediction += 1
     i += 1
 
-accuracy: float = round(correct_prediction*100/len(testing_set_original_sentiments),4) 
-print(f"Accuracy: {accuracy}%") #63.0923%
+accuracy: float = round(correct_prediction*100/len(testing_set_original_sentiments),1) 
+print(f"Accuracy: {accuracy}%") #63.1%
 
 
 
