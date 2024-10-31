@@ -112,16 +112,12 @@ def predict_label(
         str: The predicted sentiment label ('positive' or 'negative').
     """
     preprocessed_review: list[str] = preprocess_text(review)
-    prob_for_positive: float = prior_probability_positive
-    prob_for_negative: float = prior_probability_negative
+    log_prob_for_positive: float = math.log(prior_probability_positive)
+    log_prob_for_negative: float = math.log(prior_probability_negative)
     for each_word in preprocessed_review:
-        prob_for_positive = prob_for_positive * likelihood_positive_words.get(
-            each_word, (math.e)**(-6)
-        )
-        prob_for_negative = prob_for_negative * likelihood_negative_words.get(
-            each_word, (math.e)**(-6)
-        )
-    if prob_for_positive > prob_for_negative:
+        log_prob_for_positive += math.log(likelihood_positive_words.get(each_word, (math.e)**(-6)))
+        log_prob_for_negative += math.log(likelihood_negative_words.get(each_word, (math.e)**(-6)))
+    if log_prob_for_positive > log_prob_for_negative:
         return "positive"
     else:
         return "negative"
@@ -158,7 +154,7 @@ negative_review_prior_probability = calculate_prior_probability(training_set, "n
 # Testing the model on data from remaining 400 IMDB reviews
 testing_set: list[str] = get_file_contents("IMDB Dataset.csv").splitlines()[1602:2003]
 testing_set_original_sentiments: list[str] = [each_review[-8:] for each_review in testing_set]
-testing_set_predicted_sentiments: list[str] = [predict_label(each_review, positive_review_prior_probability, negative_review_prior_probability, prob_positive_words, prob_negative_words) for each_review in testing_set]
+testing_set_predicted_sentiments: list[str] = [predict_label(each_review[:len(each_review)-8], positive_review_prior_probability, negative_review_prior_probability, prob_positive_words, prob_negative_words) for each_review in testing_set]
 
 i: int = 0
 correct_prediction: int = 0
@@ -168,7 +164,4 @@ while i < len(testing_set_original_sentiments):
     i += 1
 
 accuracy: float = round(correct_prediction*100/len(testing_set_original_sentiments),1) 
-print(f"Accuracy: {accuracy}%") #63.1%
-
-
-
+print(f"Accuracy: {accuracy}%") #78.8%
