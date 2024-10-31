@@ -71,7 +71,7 @@ def calculate_likelihood_for_each_word(
         probability: float = (sentiment_word_count.get(each_word) + 1) / (
             len_sentiment_words + unique_words
         )
-        likelihood.update({each_word: round(probability, 6)})
+        likelihood.update({each_word: probability}) # Avoided rounding to maintain precision
     return likelihood
 
 
@@ -87,9 +87,7 @@ def calculate_prior_probability(reviews: list[str], sentiment: str) -> float:
         float: The prior probability of the sentiment.
     """
     reviews_sentiments: list[str] = [each_review[-8:] for each_review in reviews]
-    prior_probability: float = round(
-        reviews_sentiments.count(sentiment) / len(reviews_sentiments), 5
-    )
+    prior_probability: float = reviews_sentiments.count(sentiment) / len(reviews_sentiments) # Avoided rounding to maintain precision
     return prior_probability
 
 
