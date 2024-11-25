@@ -255,6 +255,13 @@ A prediction is counted as correct, if its original label and its predicted labe
 
 
 ## Feedback
-
-
-
+- [10] Code Quality and Documentation
+- [10] Version Control Practice
+- [9] `get_data` - it omit the first letter when making the list of reviews
+- [10] `create_word_count_table`
+- [10] `calculate_likelihood_for_each_word`
+- [10] `calculate_prior_probability`
+- [30]`predict_label`
+- [10] Final code - you can also use random.choice() to choose a review randomly to predict label
+- [10] `calculate_accuracy` - Good job with the extension!
+- Project 4b: 109 points - Amazing work with this project!
