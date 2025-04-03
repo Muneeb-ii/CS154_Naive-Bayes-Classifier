@@ -1,4 +1,3 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/_0OWL-T8)
 # Project 4B Classifier
 
 ### Name
@@ -26,8 +25,6 @@ Most of the resources I used for this project were reused from Project 4a, such 
 
 For the bonus task, I consulted online resources to understand the issues of numerical underflow and methods to prevent it. Documentation on Naive Bayes classifiers and discussions on platforms like Stack Overflow helped me learn about using logarithms in probability calculations.
 
-
-### *DO NOT EDIT BELOW THIS LINE*
 ---
 
 ## Goal
@@ -208,60 +205,3 @@ and pass in the necessary parameters that you computed in Steps 5 and 6.
 Write a function that calculates the accuracy of your classifier. For this function, you will first have to create two different sets of the list of movie reviews. The first set should, which we will call the training set, should contain 80% of all the reviews and the second set, which we will call test set, should contain 20% of all the reviews. Next, complete steps 1 - 6 for the training set. Then call the `predict_label` function on all the reviews from the test set and save their predictions in a list. To calculate the accuracy, you then need to compute the ratio of correct predictions to the total number of reviews in the test set i.e. (correct prediction / total reviews in test set).
 
 A prediction is counted as correct, if its original label and its predicted label are same. For example, if a review is `negative` and the `predict_label` function predicts it as `negative` then this is counted as a correct prediction.
-
-
-## Rubric
-
-**1. Code Quality and Documentation** - **10 points**
-
-- **Code Readability and Organization**: *5 points*
-  - Meaningful variable and function names
-- **Comments and Docstrings**: *5 points*
-  - Clear explanations of functions and complex code sections
-  - Proper use of docstrings for all functions
-
-**2. Version Control Practice** - **10 points**
-
-- **Commit Numbers and Sizes**: *5 points*
-  - The commits are made at regular intervals and of coherent pieces 
-- **Commit Messages**: *5 points*
-  - Descriptive messages that are easy to follow along.
-
-
-**3. `get_data` ** - **10 points**
-
-**4. `create_word_count_table` ** - **10 points**
-
-**5. `calculate_likelihood_for_each_word` ** - **10 points**
-
-**6. `calculate_prior_probability` ** - **10 points**
-
-**7. `predict_label` ** - **30 points**
-
-**8. Final code - **10 points**
-
-
-## Tips On How To Excel
-
-
-* Start early!
-* Ask for help when stuck. Remember the 30 minute rule? No? Look into the syllabus.
-* Break down the problem into smaller tasks and try to implement them in Jupyter Notebook. Once implemented in the notebook successfully, transfer it into `.py` file.
-* Run the `.py` file to make sure the new addition did not break any changes.
-* Use DEBUGGER!!! To test and debug your code. Ensure that the variables are changing as they should be.
-* After implementing each small task, commit changes.
-* Review the notebooks from classes available on GitHub if you cannot remember syntax for anything.
-* Run your code multiple times and vary the inputs to ensure it works as intended. 
-
-
-## Feedback
-- [10] Code Quality and Documentation
-- [10] Version Control Practice
-- [9] `get_data` - it omit the first letter when making the list of reviews
-- [10] `create_word_count_table`
-- [10] `calculate_likelihood_for_each_word`
-- [10] `calculate_prior_probability`
-- [30]`predict_label`
-- [10] Final code - you can also use random.choice() to choose a review randomly to predict label
-- [10] `calculate_accuracy` - Good job with the extension!
-- Project 4b: 109 points - Amazing work with this project!
